@@ -1,7 +1,10 @@
-import React from 'react'
-import { Text } from 'react-native-paper'
+import React, { useState } from 'react'
+import {Button, Card, Text } from 'react-native-paper'
+import apiFilmes from '../../services/apiFilmes'
 
 const FilmesPopulares = () => {
+  const [filmes, setFilmes] = useState([])
+
   function carregar() {
     apiFilmes.get('/movie/popular?language=pt-BR').then(resultado => {  
       setFilmes(resultado.data.results)
@@ -10,7 +13,17 @@ const FilmesPopulares = () => {
 
   return (
     <>
-    <Text>FilmesPopulares</Text>
+     <Button onPress={carregar}>Carregar Filmes</Button>
+
+{filmes.map(item => (
+  <Card>
+    <Card.Cover source={{ uri: 'https://image.tmdb.org/t/p/w500/' + item.backdrop_path }} />
+    <Card.Content>
+      <Text variant="titleLarge">{item.title}</Text>
+      <Text variant="bodyMedium">{item.overview}</Text>
+    </Card.Content>
+  </Card>
+))}
     </>
   )
 }
