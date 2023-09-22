@@ -1,31 +1,37 @@
-import React, { useState } from 'react'
-import {Button, Card, Text } from 'react-native-paper'
+import React, { useEffect, useState } from 'react'
+import { Button, Card, Text } from 'react-native-paper'
 import apiFilmes from '../../services/apiFilmes'
+import { ScrollView, View } from 'react-native'
 
-const FilmesPopulares = () => {
+const FilmesPopulares = ({ navigation }) => {
+
   const [filmes, setFilmes] = useState([])
 
-  function carregar() {
-    apiFilmes.get('/movie/popular?language=pt-BR').then(resultado => {  
+  useEffect(() => {
+    apiFilmes.get('/movie/popular').then(resultado => {
       setFilmes(resultado.data.results)
     })
-  }
+  }, [])
 
   return (
     <>
-     <Button onPress={carregar}>Carregar Filmes</Button>
+      <ScrollView style={{ padding: 15 }}>
 
-{filmes.map(item => (
-  <Card>
-    <Card.Cover source={{ uri: 'https://image.tmdb.org/t/p/w500/' + item.backdrop_path }} />
-    <Card.Content>
-      <Text variant="titleLarge">{item.title}</Text>
-      <Text variant="bodyMedium">{item.overview}</Text>
-    </Card.Content>
-  </Card>
-))}
+        {filmes.map(item => (
+          <Card
+            key={item.id}
+            onPress={() => navigation.push('filmes-detalhes', { id: item.id })}
+            style={{ marginBottom: 15 }}
+          >
+            <Card.Cover source={{ uri: 'https://image.tmdb.org/t/p/w500/' + item.backdrop_path }} />
+            <Card.Content>
+              <Text variant="titleLarge">{item.title}</Text>
+              <Text variant="bodyMedium">{item.overview}</Text>
+            </Card.Content>
+          </Card>
+        ))}
+      </ScrollView>
     </>
   )
 }
-
 export default FilmesPopulares
