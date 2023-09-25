@@ -39,12 +39,23 @@ const FilmesDetalhes = ({ navigation, route }) => {
                     </Card.Content>
                 </Card>
 
+                <Text variant="titleLarge" style={{ textAlign: 'center', color: 'Green' }}>Atores</Text>
+
                 {atores.map(item => (
-                    <Card key={item.id} mode="outlined">
-                        <Card.Title
+                    <Card mode="outlined" 
+                    key={item.id} 
+                    style={{ marginBottom: 10 }}
+                    onPress={() => navigation.push('atores-detalhes', {id: item.id})} >
+                        <Card.Title 
                             title={item.character}
                             subtitle={item.name}
-                        />  
+                            left={(props) =>
+                                <Image
+                                    source={{uri: 'https://image.tmdb.org/t/p/w500/' + item.profile_path}}
+                                    style={{ width: 50, height: 50, borderRadius: 50 }}
+                                />}
+                            right={(props) => <IconButton {...props} icon="chevron-right" onPress={() => { }} />}
+                        />
                     </Card>
                 ))}
 
