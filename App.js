@@ -3,20 +3,57 @@ import FilmesPopulares from './screens/filmes/FilmesPopulares';
 import { PaperProvider } from 'react-native-paper';
 import FilmesDetalhes from './screens/filmes/FilmesDetalhes';
 import Atores from './screens/Atores';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import FilmeStack from './screens/filmes/FilmeStack';
 
-const Stack = createNativeStackNavigator();
+
+const Tab = createMaterialBottomTabNavigator();
 
 export default function App() {
   return (
     <>
       <PaperProvider>
-          <NavigationContainer>
-            <Stack.Navigator>
-              <Stack.Screen name="filmes-populares" component={FilmesPopulares} options={{ title: 'Filmes Populares' }} />
-              <Stack.Screen name="filmes-detalhes" component={FilmesDetalhes} options={{ title: 'Detalhes' }} />
-              <Stack.Screen name="atores-detalhes" component={Atores} options={{ title: 'Atores' }} />
-            </Stack.Navigator>
-          </NavigationContainer>
+        <NavigationContainer>
+          <Tab.Navigator>
+            <Tab.Screen
+              name="Filmes"
+              component={FilmeStack}
+              options={{
+                tabBarIcon: () => (
+                  <MaterialCommunityIcons name="movie" size={26} />
+                ),
+              }}
+            />
+            <Tab.Screen
+              name="Séries"
+              component={FilmesPopulares}
+              options={{
+                tabBarIcon: () => (
+                  <MaterialCommunityIcons name="netflix" size={26} />
+                ),
+              }}
+            />
+            <Tab.Screen
+              name="Atores"
+              component={FilmesPopulares}
+              options={{
+                tabBarIcon: () => (
+                  <MaterialCommunityIcons name="account-multiple" size={26} />
+                ),
+              }}
+            />
+            <Tab.Screen
+              name="Configurações"
+              component={FilmesPopulares}
+              options={{
+                tabBarIcon: () => (
+                  <MaterialCommunityIcons name="cog" size={26} />
+                ),
+              }}
+            />
+          </Tab.Navigator>
+        </NavigationContainer>
       </PaperProvider>
     </>
   );
