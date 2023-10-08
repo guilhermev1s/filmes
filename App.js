@@ -1,8 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import FilmesPopulares from './screens/filmes/FilmesPopulares';
 import { PaperProvider } from 'react-native-paper';
-import FilmesDetalhes from './screens/filmes/FilmesDetalhes';
-import Atores from './screens/Atores';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import FilmeStack from './screens/filmes/FilmeStack';
