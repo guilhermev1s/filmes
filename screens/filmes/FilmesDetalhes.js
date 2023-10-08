@@ -40,11 +40,17 @@ const FilmesDetalhes = ({ navigation, route }) => {
                 </Card>
 
                 {atores.map(item => (
-                    <Card key={item.id} mode="outlined">
+                    <Card mode="outlined" key={item.id} style={{ marginBottom: 10 }}>
                         <Card.Title
                             title={item.character}
                             subtitle={item.name}
-                        />  
+                            left={(props) =>
+                                <Image
+                                    source={{uri: 'https://image.tmdb.org/t/p/w500/' + item.profile_path}}
+                                    style={{ width: 50, height: 50, borderRadius: 50 }}
+                                />}
+                            right={(props) => <IconButton {...props} icon="chevron-right" onPress={() => {navigation.push('atores-detalhes', { id: item.id }) }} />}
+                        />
                     </Card>
                 ))}
 

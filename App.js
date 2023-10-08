@@ -4,6 +4,8 @@ import { PaperProvider } from 'react-native-paper';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import FilmeStack from './screens/filmes/FilmeStack';
+import SerieStack from './screens/series/SerieStack';
+import AtoresStack from './screens/atores/AtoresStack';
 
 
 const Tab = createMaterialBottomTabNavigator();
@@ -25,7 +27,7 @@ export default function App() {
             />
             <Tab.Screen
               name="Séries"
-              component={FilmesPopulares}
+              component={SerieStack}
               options={{
                 tabBarIcon: () => (
                   <MaterialCommunityIcons name="netflix" size={26} />
@@ -34,7 +36,7 @@ export default function App() {
             />
             <Tab.Screen
               name="Atores"
-              component={FilmesPopulares}
+              component={AtoresStack}
               options={{
                 tabBarIcon: () => (
                   <MaterialCommunityIcons name="account-multiple" size={26} />

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { Text } from 'react-native'
-import apiFilmes from '../services/apiFilmes'
+import { ScrollView, Text } from 'react-native'
+import apiFilmes from '../../services/apiFilmes'
 import { Card } from 'react-native-paper'
 
 const Atores = ({ navigation, route }) => {
@@ -22,6 +22,7 @@ const Atores = ({ navigation, route }) => {
 
     return (
         <>
+        <ScrollView>
             <Card style={{ marginBottom: 15 }}>
                 <Card.Cover source={{ uri: 'https://image.tmdb.org/t/p/w500/' + ator.profile_path }} />
                 <Card.Content>
@@ -45,6 +46,7 @@ const Atores = ({ navigation, route }) => {
                     </Card.Content>
                 </Card>
             ))}
+            </ScrollView>
         </>
     )
 }

@@ -2,7 +2,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react'
 import FilmesPopulares from './FilmesPopulares';
 import FilmesDetalhes from './FilmesDetalhes';
-import Atores from '../Atores';
+import Atores from './Atores';
 
 const Stack = createNativeStackNavigator();
 
